@@ -1,0 +1,100 @@
+{
+  "name": "github-account-switcher",
+  "displayName": "Github Account Switcher",
+  "description": "Quick way to switch between different GitHub accounts",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.switchToPersonalAccount",
+    "onCommand:extension.switchToProfessionalAccount"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.switchToPersonalAccount",
+        "title": "Switch to Personal GitHub Account"
+      },
+      {
+        "command": "extension.switchToProfessionalAccount",
+        "title": "Switch to Professional GitHub Account"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "GitHub Account Switcher",
+      "properties": {
+        "githubAccountSwitcher.personalAccount.username": {
+          "type": "string",
+          "description": "Personal GitHub user name",
+          "default": "your-personal-username"
+        },
+        "githubAccountSwitcher.personalAccount.userEmail": {
+          "type": "string",
+          "description": "Personal GitHub user email",
+          "default": "your-personal-email@example.com"
+        },
+        "githubAccountSwitcher.personalAccount.sshKey": {
+          "type": "string",
+          "description": "Path to personal SSH key",
+          "default": "~/.ssh/id_ed25519"
+        },
+        "githubAccountSwitcher.personalAccount.ghUser": {
+          "type": "string",
+          "description": "Personal GitHub CLI user",
+          "default": "your-personal-gh-user"
+        },
+        "githubAccountSwitcher.professionalAccount.username": {
+          "type": "string",
+          "description": "Professional GitHub user name",
+          "default": "your-professional-username"
+        },
+        "githubAccountSwitcher.professionalAccount.userEmail": {
+          "type": "string",
+          "description": "Professional GitHub user email",
+          "default": "your-professional-email@example.com"
+        },
+        "githubAccountSwitcher.professionalAccount.sshKey": {
+          "type": "string",
+          "description": "Path to professional SSH key",
+          "default": "~/.ssh/work"
+        },
+        "githubAccountSwitcher.professionalAccount.ghUser": {
+          "type": "string",
+          "description": "Professional GitHub CLI user",
+          "default": "your-professional-gh-user"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0"
+  }
+}
